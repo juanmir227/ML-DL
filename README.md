@@ -1,1 +1,1 @@
-Created a readme
+In this repo I am going to upload my Machine Learning exercises and personal projects.
