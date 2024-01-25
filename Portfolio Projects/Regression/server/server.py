@@ -3,12 +3,6 @@ import util
 
 app = Flask(__name__)
 
-
-@app.route('/hello')
-def hello():
-    return 'Hi'
-
-
 @app.route('/get_car_models', methods =['GET'])
 def get_car_models():
 
@@ -24,7 +18,7 @@ def predict_car_price():
 
     car_model = request.form['car_model']
     year = int(request.form['year'])
-    km_driven = float(request.form['km_driven'])
+    km_driven = int(request.form['km_driven'])
     fuel = request.form['fuel']
     seller = request.form['seller']
     transmission = request.form['transmission']
@@ -33,7 +27,7 @@ def predict_car_price():
     response = jsonify({
         'estimated_price': util.get_estimated_price(car_model, year, km_driven, fuel, seller, transmission, owner)
     })
-    
+    response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
 if __name__ == '__main__':

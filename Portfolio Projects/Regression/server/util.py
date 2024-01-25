@@ -5,6 +5,10 @@ import numpy as np
 __car_models = None
 __data_columns = None
 __model = None
+__fuel = None
+__seller = None
+__transmission = None
+__owner = None
 
 def get_estimated_price(car_model, year, km_driven, fuel, seller, transmission, owner):
     try:
@@ -50,10 +54,18 @@ def load_artifacts():
     print('loading saved artifacts...')
     global __data_columns
     global __car_models
+    global __fuel
+    global __seller
+    global __transmission
+    global __owner
 
     with open('./artifacts/columns.json', 'r') as f:
         __data_columns = json.load(f)['data_columns']
         __car_models = __data_columns[13:]
+        __fuel = __data_columns[2:5]
+        __seller = __data_columns[6:7]
+        __transmission = __data_columns[8]
+        __owner = __data_columns[9:12]
     global __model
     with open('./artifacts/used_cars_model.pickle', 'rb') as f:
         __model = pickle.load(f)
@@ -67,6 +79,6 @@ def get_data_columns():
 
 if __name__ =='__main__':
     load_artifacts()
-    print(get_estimated_price('Maruti 800 AC', 2007, 70000, 'Petrol', 'Individual', 'Manual', 'First owner')) #real 833.0
+    # print(get_estimated_price('Maruti 800 AC', 2007, 70000, 'Petrol', 'Individual', 'Manual', 'First owner')) #real 833.0
     # print(get_estimated_price('Hyundai Verna 1.6 SX', 2012, 100000, 'Diesel', 'Individual', 'Manual', 'First Owner')) #real 8333.0
     # print(get_estimated_price('Hyundai i20 Magna 1.4 CRDi (Diesel)', 2014, 80000, 'Diesel', 'Individual', 'Manual', 'Second Owner')) #real 5694.0
