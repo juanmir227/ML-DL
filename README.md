@@ -1,1 +1,1 @@
-In this repo I am going to upload my Machine Learning exercises and personal projects.
+In this repo I am going to upload my Machine Learning and Deep learning exercises and personal projects.
